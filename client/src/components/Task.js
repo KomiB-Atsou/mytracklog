@@ -39,7 +39,7 @@ function Task(props) {
 
     useEffect(() => {
 
-        categoryService.getAll("")            
+        /* categoryService.getAll("")            
             .then(result => {
                 console.log('***************************************************');
                 if (result.error) {
@@ -47,26 +47,13 @@ function Task(props) {
                     return;
                 }
                
-                /* let temp = result.data;
-
-                temp.forEach(element => {
-                
-                element.value = element._id;
-                }); */
                 console.log('resul.datyaresul.datyaresul.datyaresul.datyaresul.datyaresul.datyaresul.datyaresul.datyaresul.datyaresul.datyaresul.datyaresul.datyaresul.datyaresul.datya: ', result.data);
                 setCategories(result.data);
                 console.log('categoriescategoriescategoriescategoriescategoriescategoriescategoriescategoriescategoriescategoriescategoriescategoriescategoriescategories: ', categories);
-                /* if (props.task) {
-                    console.log(props.task);
-                    setLabel(props.task.title.split('|')[0]);
-                    setCategoryId(props.task.categoryId);
-                    setDescription(props.task.description);
-                    setStartedAt(moment(props.task.start).format("YYYY-MM-DDTHH:mm"));
-                    setFinishedAt(moment(props.task.end).format("YYYY-MM-DDTHH:mm"));
-                } */
-            });
+              
+            }); */
 
-        /* categoryService.getAllFlat("")
+        categoryService.getAllFlat("")
             .then(result => {
                 if (result.error) {
                     swalError(result.error);
@@ -82,7 +69,7 @@ function Task(props) {
                     setStartedAt(moment(props.task.start).format("YYYY-MM-DDTHH:mm"));
                     setFinishedAt(moment(props.task.end).format("YYYY-MM-DDTHH:mm"));
                 }
-            }); */
+            });
     }, []);
 
     const handleSubmit = async e => {
@@ -199,10 +186,10 @@ function Task(props) {
                         <div className="col text-left">
                             <div className="form-group">
                                 <label htmlFor="txtLabel">Category</label>
-                                <DropdownTreeSelect data={categories} onChange={onChange} onAction={onAction} onNodeToggle={onNodeToggle} 
-                                keepTreeOnSearch={true} mode="radioSelect" keepOpenOnSelect={true}/>
+                                {/* <DropdownTreeSelect data={categories} onChange={onChange} onAction={onAction} onNodeToggle={onNodeToggle} 
+                                keepTreeOnSearch={true} mode="radioSelect" keepOpenOnSelect={true}/> */}
 
-                                {/* <SelectSearch
+                                <SelectSearch
                                     value={categoryId}
                                     onChange={setCategoryId}
                                     emptyMessage="Not found"
@@ -211,7 +198,7 @@ function Task(props) {
                                     filterOptions={fuzzySearch}
                                     options={categories}
                                     style={{width: '100%'}}
-                                /> */}
+                                />
                             </div>
                         </div>
                     </div>
