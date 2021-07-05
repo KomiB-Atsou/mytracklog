@@ -2,9 +2,14 @@ import React, {useState, useEffect} from 'react';
 import moment from 'moment';
 import Rodal from 'rodal';
 import 'rodal/lib/rodal.css';
-import taskService from '../services/task';
+//import taskService from '../services/task';
 import categoryService from '../services/category';
-import {swalDeleteForm, swalError, swalInfo, swalSuccess} from "../utils/swal";
+import {
+    //swalDeleteForm,
+    swalError,
+    //swalInfo, 
+    //swalSuccess
+    } from "../utils/swal";
 import Swal from "sweetalert2";
 
 function Category(props) {

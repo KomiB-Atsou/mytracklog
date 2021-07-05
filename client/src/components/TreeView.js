@@ -2,8 +2,8 @@ import React, {useState, useEffect} from 'react';
 import categoryService from '../services/category';
 import {swalCategory, swalDeleteCategory, swalError, swalLoading, swalSuccess} from "../utils/swal";
 import Swal from "sweetalert2";
-import CalendarView from "./CalendarView";
-import Header from "./Header";
+/* import CalendarView from "./CalendarView";
+import Header from "./Header"; */
 import Category from "./Category";
 
 function TreeView(props) {

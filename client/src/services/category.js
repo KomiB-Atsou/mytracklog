@@ -4,7 +4,9 @@ import moment from "moment";
 
 export default class {
 
-    static getAll = async keyword => {
+     static getAll = async keyword => {
+        console.log('canalbox : ');
+        
         let result = {
             data: null,
             error: null
@@ -12,16 +14,18 @@ export default class {
 
         await axios.post(`${config.api}/categories/all`, {keyword: keyword})
             .then(resp => {
+                console.log('cool : ');
                 if (resp.status === 200) {
                     result.data = resp.data;
                 }
             })
             .catch(err => {
+                console.log('pas cool : ', err);
                 result.error = err.response.data;
             });
 
         return result;
-    }
+    } 
 
     static getAllFlat = async keyword => {
         let result = {

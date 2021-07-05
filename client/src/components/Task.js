@@ -9,9 +9,9 @@ import Swal from "sweetalert2";
 import SelectSearch, {fuzzySearch} from 'react-select-search';
 import 'react-select-search/style.css';
 
-import ReactDOM from 'react-dom'
+/* import ReactDOM from 'react-dom'
 
-import DropdownTreeSelect from 'react-dropdown-tree-select'
+import DropdownTreeSelect from 'react-dropdown-tree-select' */
 import 'react-dropdown-tree-select/dist/styles.css'
 
 function Task(props) {
@@ -24,7 +24,7 @@ function Task(props) {
     const [finishedAt, setFinishedAt] = useState(currentDateTime);
     const [categories, setCategories] = useState([]);
 
-    const onChange = (currentNode, selectedNodes) => {
+    /* const onChange = (currentNode, selectedNodes) => {
 
         console.log('the value : ', currentNode, selectedNodes);
         setCategoryId(currentNode.value)
@@ -35,7 +35,7 @@ function Task(props) {
       }
       const onNodeToggle = currentNode => {
         console.log('onNodeToggle::', currentNode)
-      }
+      } */
 
     useEffect(() => {
 

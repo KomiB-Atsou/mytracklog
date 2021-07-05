@@ -1,23 +1,19 @@
 import React, {useEffect, useState} from 'react';
-import './App.css';
+import './Home.css';
 import {Route, Switch, BrowserRouter, Redirect} from 'react-router-dom';
-import Header from "./components/Header";
-import CalendarView from "./components/CalendarView";
-import TreeView from "./components/TreeView";
-import NoCategorySelected from "./components/NoCategorySelected";
-import categoryService from "./services/category";
-import {swalError} from "./utils/swal";
-import Task from "./components/Task";
-import taskService from "./services/task";
+import Header from "../../components/Header";
+import CalendarView from "../../components/CalendarView";
+import TreeView from "../../components/TreeView";
+import NoCategorySelected from "../../components/NoCategorySelected";
+import categoryService from "../../services/category";
+import {swalError} from "../../utils/swal";
+import Task from "../../components/Task";
+import taskService from "../../services/task";
 import moment from "moment";
-import Auth from "./components/Auth/Auth"
 import _ from "lodash";
-import { Container } from '@material-ui/core';
 import $ from "jquery";
-import Home from './components/Home/Home';
 
-function App() {
-    const user = JSON.parse(localStorage.getItem('profile'));
+function Home() {
     const [data, setData] = useState([]);
     const [tasks, setTasks] = useState([]);
     const [totalDuration, setTotalDuration] = useState(0);
@@ -26,7 +22,6 @@ function App() {
     const [selectedTask, setSelectedTask] = useState(null);
 
     useEffect(() => {
-        
         reloadCategories();
     }, []);
 
@@ -36,7 +31,6 @@ function App() {
     }, [selectedCategory]);
 
     const reloadCategories = async () => {
-        
         await categoryService.getAll(``)
             .then(result => {
                 if (result.error) {
@@ -94,24 +88,7 @@ function App() {
     const getHoursMinutesFormat = minutes => moment.utc(moment.duration(minutes*60, "seconds").asMilliseconds()).format("HH:mm");
 
     return (
-
-        <BrowserRouter>
-        <Container maxWidth="xl">
-      
-        <Switch>
-        <Route path="/" exact component={() => (!user ?  <Redirect to="/login" /> : <Home/>)} />
-          <Route path="/" exact component={Home} />
-          <Route path="/login" exact component={Auth} />
-         {/*  <Route path="/posts" exact component={Home} />
-          <Route path="/posts/search" exact component={Home} />
-          <Route path="/posts/:id" exact component={PostDetails} />
-          <Route path={['/creators/:name', '/tags/:name']} component={CreatorOrTag} /> */}
-         
-        </Switch>
-      </Container>
-      
-
-        {/* <div>
+        <div>
             <Header />
             {
                 showTaskModal &&
@@ -147,9 +124,8 @@ function App() {
                     </div>
                 </div>
             </div>
-        </div> */}
-        </BrowserRouter>
+        </div>
     );
 }
 
-export default App;
+export default Home;

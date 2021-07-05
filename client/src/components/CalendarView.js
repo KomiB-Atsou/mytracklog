@@ -1,14 +1,14 @@
-import React, {useState} from 'react';
+import React from 'react';
 import moment from 'moment';
 import {Calendar, momentLocalizer} from 'react-big-calendar';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
-import NoCategorySelected from "./NoCategorySelected";
-import taskService from '../services/task';
+/*import NoCategorySelected from "./NoCategorySelected";
+import taskService from '../services/task';*/
 
 function CalendarView(props) {
 
-    const [start, setStart] = useState(Date.now());
-    const [end, setEnd] = useState(Date.now());
+   /*  const [start, setStart] = useState(Date.now());
+    const [end, setEnd] = useState(Date.now()); */
     const localizer = momentLocalizer(moment);
 
     const handleSelect = ({ start, end }) => {
