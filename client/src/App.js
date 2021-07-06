@@ -99,7 +99,7 @@ function App() {
         <Container maxWidth="xl">
       
         <Switch>
-        <Route path="/" exact component={() => (!user ? <Auth /> :<Redirect to="/tasks" />) } />
+        <Route path="/" exact component={() => (user ? <Home /> :<Redirect to="/login" />) } />
           <Route path="/tasks" exact component={Home} />
           <Route path="/tasks/search" exact component={Home} />
           <Route path="/login" exact component={() => (!user ? <Auth /> : <Redirect to="/tasks" />)} />
