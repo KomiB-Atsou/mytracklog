@@ -1,5 +1,6 @@
 import axios from 'axios';
-import config from '../config.json';
+//import config from '../config.json';
+const config = { api: process.env.REACT_APP_API_URL};
 
 export default class {
 
