@@ -87,7 +87,7 @@ function CategoryForm(props) {
                 clear();
                 //props.reloadTasks();
                 props.onClose();
-                //reloadPage();
+                reloadPage();
             });
         }
     }
