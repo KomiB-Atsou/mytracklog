@@ -48,7 +48,9 @@ export default function Header(props) {
           <div className={classes.profile}>
             {/* <Avatar className={classes.purple} alt={user?.result.name} src={user?.result.imageUrl}>{user?.result.name.charAt(0)}</Avatar> */}
             <Typography className={classes.userName} variant="h6">{user?.result.name}</Typography>
-            <Button variant="contained" className={classes.logout} color="secondary"
+            <Button variant="contained" className={classes.logout} color="secondary" style={{
+                marginLeft: 950
+            }}
             onClick={logout}
              >Logout</Button>
           </div>
@@ -57,12 +59,12 @@ export default function Header(props) {
         )}
       </Toolbar>
 
-            <a className="navbar-brand text-white" href="/user/logout" style={{
+            {/* <a className="navbar-brand text-white" href="/user/logout" style={{
                 marginLeft: 1000
             }}>
                 <i className="fas fa-sign-out-alt" style={{fontSize: '26px', marginRight: '10px'}}></i>
-                Logoooooooooooout
-            </a>
+                Logout
+            </a> */}
         </nav>
     );
 }
