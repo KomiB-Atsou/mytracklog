@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Avatar, Button, Paper, Grid, Typography, Container } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
@@ -14,11 +14,22 @@ import Input from './Input';
 const initialState = { firstname: '', lastname: '', email: '', password: '', confirmPassword: '' };
 
 const SignUp = () => {
+
   const [form, setForm] = useState(initialState);
   const [isSignup, setIsSignup] = useState(false);
   const dispatch = useDispatch();
   const history = useHistory();
   const classes = useStyles();
+
+  useEffect(() => {
+    const token = localStorage.getItem('profile');
+     if(token) {
+         history.push('/');
+     }
+    
+ }, []);   
+
+
 
   const [showPassword, setShowPassword] = useState(false);
   const handleShowPassword = () => setShowPassword(!showPassword);

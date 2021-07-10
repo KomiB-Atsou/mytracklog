@@ -40,14 +40,33 @@ function App() {
 
         <BrowserRouter>
         <Container maxWidth="xl">
-      
+
         <Switch>
-            <Route path="/" exact component={Home} onEnter={requireAuth} />
-            <Route path="/tasks" exact component={Home} onEnter={requireAuth}/>
+            <Route path="/" exact render={() => 
+                {
+                    if(localStorage.getItem('profile')){
+                        console.log('yes');
+                        return  (<Home/>)
+                    }else {
+                        console.log('no');
+                        return (<Redirect to="/login" />)
+                    }
+                    
+                }} />
+            <Route path="/tasks" exact component={Home} />
             <Route path="/tasks/search" exact component={Home} />
             <Route path="/login" exact component={Auth} />        
          
         </Switch>
+      
+        {/* <Switch>
+            <Route path="/" exact component={Home} onEnter={requireAuth} />
+            <Route path="/tasks" exact component={Home} onEnter={requireAuth}/>
+            <Route path="/tasks/search" exact component={Home} />
+            <Route path="/login" exact component={Auth} />     
+            <Route path="/login" exact component={Auth} />   
+         
+        </Switch> */}
       </Container>    
         </BrowserRouter>
     );

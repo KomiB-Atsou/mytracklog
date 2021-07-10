@@ -12,13 +12,15 @@ import taskService from "../../services/task";
 import moment from "moment";
 import _ from "lodash";
 import $ from "jquery";
+import CategoryForm from '../CategoryForm';
 
 function Home() {
     const [data, setData] = useState([]);
     const [tasks, setTasks] = useState([]);
     const [totalDuration, setTotalDuration] = useState(0);
     const [selectedCategory, setSelectedCategory] = useState(null);
-    const [showTaskModal, setShowTaskModal] = useState(false);
+    const [showTaskModal, setShowTaskModal] = useState(false); 
+
     const [selectedTask, setSelectedTask] = useState(null);
 
     useEffect(() => {
@@ -46,6 +48,7 @@ function Home() {
         setShowTaskModal(true);
     }
 
+    
     const reloadTasks = async () => {
         await taskService.getAll(selectedCategory._id)
             .then(result => {
@@ -97,6 +100,7 @@ function Home() {
                     onClose={() => {setSelectedTask(null); setShowTaskModal(false);}}
                     reloadTasks={reloadTasks} />
             }
+             
             <div className="container-fluid">
                 <div className="row mt-10" style={{height: '90vh'}}>
                     <div className="col-3">
@@ -118,6 +122,7 @@ function Home() {
                                     ></i>
                                     Create new Task
                                 </a>
+                                
                             </div>
                         </div>}
                         {selectedCategory && <CalendarView tasks={tasks} viewTaskDetails={viewTaskDetails} /> || <NoCategorySelected />}

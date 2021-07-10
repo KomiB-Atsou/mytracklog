@@ -1,19 +1,42 @@
 import React, {useState, useEffect} from 'react';
 import categoryService from '../services/category';
+import taskService from '../services/task';
+import { AppBar, Typography, Toolbar, Avatar, Button } from '@material-ui/core';
 import {swalCategory, swalDeleteCategory, swalError, swalLoading, swalSuccess} from "../utils/swal";
 import Swal from "sweetalert2";
 /* import CalendarView from "./CalendarView";
 import Header from "./Header"; */
 import Category from "./Category";
+import { Link } from 'react-router-dom';
+import CategoryForm from './CategoryForm';
+import _ from "lodash";
+import moment from 'moment';
 
 function TreeView(props) {
 
     const [showCategoryDetailsPopup, setShowCategoryDetailsPopup] = useState(false);
     const [selectedCategory, setSelectedCategory] = useState(null);
+    const [selectedUpdateCategory, setSelectedUpdateCategory] = useState(null);
+    const [currentCategoryParent, setCurrentCategoryParent] = useState('');
+
+    const [showCategoryModal, setShowCategoryModal] = useState(false);
+    const [showCategoryUpdateModal, setShowCategoryUpdateModal] = useState(false);
+    
+    const [totalDuration, setTotalDuration] = useState(0);
+    const [tasks, setTasks] = useState([]);
+
+    
 
     useEffect(() => {
         reloadLibs();
+        //reloadTasks();
     }, []);
+
+    const handleCreateCategory = e => {
+        e.preventDefault();
+        setShowCategoryModal(true);
+       
+    }
 
     const reloadPage = () => {
         setTimeout(() => {
@@ -32,6 +55,40 @@ function TreeView(props) {
             document.getElementsByTagName('body')[0].appendChild(js);
         }, 2000);
     }
+
+    const reloadTasks = async () => {
+        await taskService.getAll(selectedCategory._id)
+            .then(result => {
+                if (result.error) {
+                    swalError(result.error);
+                    return;
+                }
+
+                setTotalDuration(result.data.duration);
+
+                let f = Array.from(result.data.tasks);
+                let groups = _.groupBy(result.data.tasks, obj => moment(obj.start).startOf('day').format());
+                for (const [key, value] of Object.entries(groups)) {
+                    f.push({
+                        _id: value._id,
+                        categoryId: value.categoryId,
+                        title: `Total ${getHoursMinutesFormat(value.reduce((a, b) => a + b.duration, 0))}`,
+                        start: moment(key).toDate(),
+                        end: moment(key).toDate()
+                    });
+                }
+                
+                f = f.map(x => {
+                    return {
+                        ...x,
+                        start: moment(x.start).toDate(),
+                        end: moment(x.end).toDate()
+                    };
+                });
+
+                setTasks(f);
+            });
+    } 
 
     const handleCreate = (e, currentCategory) => {
         e.preventDefault();
@@ -78,8 +135,11 @@ function TreeView(props) {
 
     const handleUpdate = (e, currentCategory) => {
         e.preventDefault();
+        setSelectedCategory(currentCategory);
+        setCurrentCategoryParent(currentCategory.parentCategoryId)
+        setShowCategoryUpdateModal(true);
 
-        swalCategory(currentCategory.label, '', async label => {
+        /* swalCategory(currentCategory.label, '', async label => {
             swalLoading();
             await categoryService.update(currentCategory._id, label)
                 .then(result => {
@@ -92,7 +152,7 @@ function TreeView(props) {
                     swalSuccess('Category updated successfully!');
                     reloadPage();
                 });
-        });
+        }); */
     }
 
     const handleDelete = (e, currentCategory) => {
@@ -140,18 +200,48 @@ function TreeView(props) {
         });
     }
 
+    const getHoursMinutesFormat = minutes => moment.utc(moment.duration(minutes*60, "seconds").asMilliseconds()).format("HH:mm");
+
+
     return (
         <div>
+            {
+                showCategoryModal &&
+                <CategoryForm
+                    task={selectedCategory}
+                    onClose={() => {setSelectedCategory(null); setShowCategoryModal(false);}}
+                    reloadCategorys={reloadTasks}
+                     />
+            }
+            {
+                showCategoryUpdateModal &&
+                <CategoryForm
+                    category={selectedCategory}
+                    onClose={() => {setSelectedUpdateCategory(null); setShowCategoryUpdateModal(false);}}
+                    reloadCategorys={reloadTasks}
+                     />
+            }
             {selectedCategory && showCategoryDetailsPopup && <Category category={selectedCategory} onClose={() => {setSelectedCategory(null); setShowCategoryDetailsPopup(false);}} />}
             <div className="row">
-                <div className="col text-right">
+                <div className="col text-left">
                     <a href="#" onClick={e => handleCreateRoot(e)} className="btn-purple">
                         <i
                             className="fa fa-plus-circle"
                             style={{fontSize: '20px', marginRight: '8px'}}
                         ></i>
-                        Create a root category
+                        Root category
                     </a>
+                    {/* <Button component={Link} to="/categoryAdd" variant="contained" color="primary">Add new category</Button> */}
+                </div>
+                <div className="col text-right" style={{marginRight: '108px'}}>
+                    <a href="#" onClick={e => handleCreateCategory(e)} className="btn-purple">
+                        <i
+                            className="fa fa-plus-circle"
+                            style={{fontSize: '20px', marginRight: '8px'}}
+                        ></i>
+                        Category
+                    </a>
+                    {/* <Button component={Link} to="/categoryAdd" variant="contained" color="primary">Add new category</Button> */}
                 </div>
             </div>
             <div className="row mt-10">
