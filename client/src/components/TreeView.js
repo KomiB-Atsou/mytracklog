@@ -136,10 +136,10 @@ function TreeView(props) {
     const handleUpdate = (e, currentCategory) => {
         e.preventDefault();
         setSelectedCategory(currentCategory);
-        setCurrentCategoryParent(currentCategory.parentCategoryId)
-        setShowCategoryUpdateModal(true);
+        /* setCurrentCategoryParent(currentCategory.parentCategoryId)
+        setShowCategoryUpdateModal(true); */
 
-        /* swalCategory(currentCategory.label, '', async label => {
+        swalCategory(currentCategory.label, '', async label => {
             swalLoading();
             await categoryService.update(currentCategory._id, label)
                 .then(result => {
@@ -152,7 +152,7 @@ function TreeView(props) {
                     swalSuccess('Category updated successfully!');
                     reloadPage();
                 });
-        }); */
+        });
     }
 
     const handleDelete = (e, currentCategory) => {
