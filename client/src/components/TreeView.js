@@ -18,7 +18,7 @@ function TreeView(props) {
     const reloadPage = () => {
         setTimeout(() => {
             window.location.reload();
-        }, 200);
+        }, 2000);
     }
 
     const reloadLibs = () => {
@@ -30,7 +30,7 @@ function TreeView(props) {
             js.src = "/js/script.js";
             js.type = "text/javascript";
             document.getElementsByTagName('body')[0].appendChild(js);
-        }, 200);
+        }, 2000);
     }
 
     const handleCreate = (e, currentCategory) => {
