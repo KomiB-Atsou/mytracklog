@@ -76,7 +76,7 @@ export default class {
         return result;
     }
 
-    static update = async (id, label) => {
+    static update = async (id, label, parentCategoryId) => {
         let result = {
             data: null,
             error: null
@@ -84,16 +84,19 @@ export default class {
 
         const data = {
             label: label,
+            parentCategoryId: parentCategoryId,
             dateUpdated: moment().format()
         };
 
         await axios.post(`${config.api}/categories/${id}`, data)
             .then(resp => {
+                console.log('passed : ', resp);
                 if (resp.status === 200) {
                     result.data = resp.data;
                 }
             })
             .catch(err => {
+                console.log('error : ', err);
                 result.error = err.response.data;
             });
 

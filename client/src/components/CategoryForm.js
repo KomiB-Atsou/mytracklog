@@ -43,13 +43,14 @@ function CategoryForm(props) {
                 }
 
                 setCategories(result.data);
-                if (props.task) {
-                    console.log(props.task);
-                    setLabel(props.task.title.split('|')[0]);
-                    setCategoryId(props.task.categoryId);
-                    setDescription(props.task.description);
-                    setStartedAt(moment(props.task.start).format("YYYY-MM-DDTHH:mm"));
-                    setFinishedAt(moment(props.task.end).format("YYYY-MM-DDTHH:mm"));
+                if (props.category) {
+                    console.log(props.category);
+                    setLabel(props.category.label.split('|')[0]);
+                    setParentCategoryId(props.category.parentCategoryId)
+                    /* setCategoryId(props.category.categoryId);
+                    setDescription(props.category.description);
+                    setStartedAt(moment(props.category.start).format("YYYY-MM-DDTHH:mm"));
+                    setFinishedAt(moment(props.category.end).format("YYYY-MM-DDTHH:mm")); */
                 }
             });
     }, []);
@@ -58,7 +59,7 @@ function CategoryForm(props) {
         console.log('payload : ', {label, parentCategoryId});
         e.preventDefault();        
 
-        if (!props.task) {
+        if (!props.category) {
             await categoryService.add(label, parentCategoryId).then(result => {
                 if (result.error) {
                     swalError(result.error);
@@ -73,10 +74,9 @@ function CategoryForm(props) {
                 reloadPage();
             });
         } else {
-            await categoryService.update(props.task._id, {
-                label,
-                parentCategoryId
-            }).then(result => {
+            await categoryService.update(props.category._id, label,
+                parentCategoryId).then(result => {
+                    console.log('result : ', result);
                 if (result.error) {
                     swalError(result.error);
                     return;
@@ -87,14 +87,14 @@ function CategoryForm(props) {
                 clear();
                 //props.reloadTasks();
                 props.onClose();
-                reloadPage();
+                //reloadPage();
             });
         }
     }
 
     const handleDelete = e => {
         swalDeleteForm(async () => {
-            await categoryService.delete(props.task._id)
+            await categoryService.delete(props.category._id)
                 .then(result => {
                     if (result.error) {
                         swalError(result.error);
@@ -114,6 +114,7 @@ function CategoryForm(props) {
         setLabel('');
         setDescription('');
         setCategoryId('');
+        setParentCategoryId('');
         const currentDateTime = moment().format("YYYY-MM-DDThh:mm");
         setStartedAt(currentDateTime);
         setFinishedAt(currentDateTime);
@@ -132,10 +133,10 @@ function CategoryForm(props) {
                customStyles={{width: '50%', height: '70%', overflow: 'auto'}}>
             <div className="container-fluid text-center">
                 <form onSubmit={handleSubmit}>
-                    <h4 className="m-4">{props.task && 'Update Category' || 'Create Category'}</h4>
+                    <h4 className="m-4">{props.category && 'Update Category' || 'Create Category'}</h4>
                     {/*<div className="row">*/}
                     {/*    <div className="col text-left">*/}
-                    {/*        <label><i>You are {props.task && 'updating' || 'adding'} this Category*/}
+                    {/*        <label><i>You are {props.category && 'updating' || 'adding'} this Category*/}
                     {/*            in <strong>{props.selectedCategory.label} </strong>category.</i></label>*/}
                     {/*    </div>*/}
                     {/*</div>*/}
@@ -186,7 +187,7 @@ function CategoryForm(props) {
                                 onClick={handleSubmit}>Submit
                             </button>
                             {
-                                props.task &&
+                                props.category &&
                                 <button
                                     type="button"
                                     className="btn btn-danger m-1"

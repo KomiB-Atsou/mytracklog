@@ -13,6 +13,7 @@ module.exports = {
     update: async (id, data) => {
         let t = await Category.findByIdAndUpdate(id, {
             label: data.label,
+            parentCategoryId: data.parentCategoryId,
             dateUpdated: data.dateUpdated
         });
         return t ? t : false;
