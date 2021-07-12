@@ -23,6 +23,7 @@ function getChildrenIdsRecursive(arr) {
 }
 
 router.post('/all', async (req, res) => {
+    
     try {
         const categoryId = req.body.categoryId;
         allCategories = await categoryManager.list("");
