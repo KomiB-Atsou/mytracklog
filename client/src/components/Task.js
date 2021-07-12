@@ -238,14 +238,14 @@ function Task(props) {
                         <div className="col text-left">
                             <div className="form-group">
                                 <label htmlFor="txtStart">Starting at</label>
-                                <input type="datetime-local" className="form-control"
+                                <input type="datetime" className="form-control"
                                        value={startedAt} onChange={e => setStartedAt(e.target.value)}/>
                             </div>
                         </div>
                         <div className="col text-left">
                             <div className="form-group">
                                 <label htmlFor="txtStart">Finished at</label>
-                                <input type="datetime-local" className="form-control"
+                                <input type="datetime" className="form-control"
                                        value={finishedAt} onChange={e => setFinishedAt(e.target.value)}/>
                             </div>
                         </div>
