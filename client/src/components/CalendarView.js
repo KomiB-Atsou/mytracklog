@@ -15,6 +15,7 @@ function CalendarView(props) {
     }
 
     const handleSelectEvent = task => {
+        console.log('see task selected : ', task)
         props.viewTaskDetails(task);
     }
 

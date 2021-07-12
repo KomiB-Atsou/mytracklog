@@ -239,6 +239,7 @@ function Task(props) {
                         <div className="col text-left">
                             <div className="form-group">
                                 <label htmlFor="txtStart">Starting at</label>
+                                {console.log('staaaaaaaaaaarted at : ', startedAt)}
                                 <input type="datetime-local" className="form-control"
                                        value={startedAt} onChange={e => setStartedAt(e.target.value)}/>
                             </div>

@@ -36,8 +36,8 @@ router.post('/all', async (req, res) => {
                 _id: x._id,
                 categoryId: x.categoryId,
                 title: `${x.label} | ${moment(x.startedAt).format('HH:mm')}-${moment(x.finishedAt).format('HH:mm')} | ${getHoursMinutesFormat(x.duration)}`,
-                start: moment(x.startedAt).toDate(),
-                end: moment(x.finishedAt).toDate(),
+                start: moment(x.startedAt).format("YYYY-MM-DDTHH:mm"),
+                end: moment(x.finishedAt).format("YYYY-MM-DDTHH:mm"),
                 description: x.description,
                 duration: x.duration
             };
