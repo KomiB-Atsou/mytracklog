@@ -170,6 +170,7 @@ function Task(props) {
                     {/*            in <strong>{props.selectedCategory.label} </strong>category.</i></label>*/}
                     {/*    </div>*/}
                     {/*</div>*/}
+                    <input type="hidden" id="timezone" name="timezone" value="+02:00"></input>
                     <div className="row">
                         <div className="col text-left">
                             <div className="form-group">
@@ -238,14 +239,14 @@ function Task(props) {
                         <div className="col text-left">
                             <div className="form-group">
                                 <label htmlFor="txtStart">Starting at</label>
-                                <input type="datetime" className="form-control"
+                                <input type="datetime-local" className="form-control"
                                        value={startedAt} onChange={e => setStartedAt(e.target.value)}/>
                             </div>
                         </div>
                         <div className="col text-left">
                             <div className="form-group">
                                 <label htmlFor="txtStart">Finished at</label>
-                                <input type="datetime" className="form-control"
+                                <input type="datetime-local" className="form-control"
                                        value={finishedAt} onChange={e => setFinishedAt(e.target.value)}/>
                             </div>
                         </div>
