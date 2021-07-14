@@ -15,7 +15,8 @@ module.exports = {
             startedAt: data.startedAt,
             finishedAt: data.finishedAt,
             duration: data.duration,
-            categoryId: data.categoryId
+            categoryId: data.categoryId,
+            updated_at: Date.now(),
         });
         return t ? t : false;
     },

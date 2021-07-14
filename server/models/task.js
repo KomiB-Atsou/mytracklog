@@ -9,7 +9,9 @@ const schema = new mongoose.Schema({
     },
     startedAt: {type: Date},
     finishedAt: {type: Date},
-    duration: {type: Number, default: 15}
+    duration: {type: Number, default: 15},
+    created_at: {type: Date, default: Date.now()},
+    updated_at: {type: Date, default: Date.now()},
 });
 
 const Task = mongoose.model("Task", schema);
