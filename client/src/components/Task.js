@@ -81,6 +81,7 @@ function Task(props) {
         }
 
         if (!props.task) {
+            
             await taskService.add({
                 label,
                 description,

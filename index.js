@@ -16,5 +16,8 @@ app.use('/categories', categories);
 app.use('/tasks', tasks);
 app.use('/user', users);
 
+console.log('test server time : ', new Date());
+
+
 const port = process.env.PORT || 4000;
 app.listen(port, () => console.log(`API started @${port}`));
