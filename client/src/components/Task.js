@@ -83,6 +83,9 @@ function Task(props) {
         if (!props.task) {
 
             //console.log('moment.utc(startedAt : ',moment.utc(startedAt));
+           
+            /* const started = new Date(startedAt).toISOString();
+            console.log('new Date (startedAt) :', new Date(startedAt).toISOString()); */
 
             await taskService.add({
                 label,

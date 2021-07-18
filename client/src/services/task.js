@@ -24,6 +24,7 @@ export default class {
     }
 
     static add = async obj => {
+        //obj.started
         let result = {
             data: null,
             error: null
