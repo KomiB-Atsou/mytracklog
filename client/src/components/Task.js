@@ -81,7 +81,9 @@ function Task(props) {
         }
 
         if (!props.task) {
-            
+
+            console.log('startedAt : ', startedAt);
+
             await taskService.add({
                 label,
                 description,
@@ -242,7 +244,10 @@ function Task(props) {
                                 <label htmlFor="txtStart">Starting at</label>
                                 {console.log('staaaaaaaaaaarted at : ', startedAt)}
                                 <input type="datetime-local" className="form-control"
-                                       value={startedAt} onChange={e => setStartedAt(e.target.value)}/>
+                                       value={startedAt} onChange={e => {
+                                           console.log('choosen dateHour :', e.target.value);
+                                           setStartedAt(e.target.value)
+                                       }}/>
                             </div>
                         </div>
                         <div className="col text-left">
