@@ -82,7 +82,7 @@ function Task(props) {
 
         if (!props.task) {
 
-            console.log('startedAt : ', startedAt);
+            console.log('moment.utc(startedAt : ',moment.utc(startedAt));
 
             await taskService.add({
                 label,
