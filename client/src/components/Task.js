@@ -80,12 +80,13 @@ function Task(props) {
             return;
         }
 
+            const started = new Date(startedAt).toISOString();
+            const finished = new Date(finishedAt).toISOString();
         if (!props.task) {
 
             //console.log('moment.utc(startedAt : ',moment.utc(startedAt));
            
-            const started = new Date(startedAt).toISOString();
-            const finished = new Date(finishedAt).toISOString();
+            
             //console.log('new Date (startedAt) :', new Date(startedAt).toISOString());
 
             await taskService.add({
