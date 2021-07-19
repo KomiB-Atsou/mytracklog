@@ -112,8 +112,8 @@ function Task(props) {
             await taskService.update(props.task._id, {
                 label,
                 description,
-                startedAt,
-                finishedAt,
+                startedAt: started,
+                finishedAt: finished,
                 duration: duration,
                 categoryId
             }).then(result => {
