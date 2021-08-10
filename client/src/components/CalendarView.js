@@ -9,6 +9,11 @@ function CalendarView(props) {
 
    /*  const [start, setStart] = useState(Date.now());
     const [end, setEnd] = useState(Date.now()); */
+    moment.locale("en", {
+        week: {
+            dow: 1
+        }
+    })
     const localizer = momentLocalizer(moment);
 
     const handleSelect = ({ start, end }) => {
