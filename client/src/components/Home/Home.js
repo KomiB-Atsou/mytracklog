@@ -17,7 +17,7 @@ import CategoryForm from '../CategoryForm';
 function Home() {
     const [data, setData] = useState([]);
     const [tasks, setTasks] = useState([]);
-    const [totalDuration, setTotalDuration] = useState(0);
+    const [totalDuration, setTotalDuration] = useState('');
     const [selectedCategory, setSelectedCategory] = useState(null);
     const [showTaskModal, setShowTaskModal] = useState(false); 
 
@@ -57,8 +57,17 @@ function Home() {
                     return;
                 }
 
-                setTotalDuration(result.data.duration);
+                //setTotalDuration(result.data.duration);
 
+                var x = result.data.duration * 1000;
+                var d = moment.duration(x, 'milliseconds');
+                var hours = Math.floor(d.asHours());
+                var mins = Math.floor(d.asMinutes()) - hours * 60;
+                console.log(hours + " hours:" + mins + " mins:");
+                const theDuration = hours + " h " + mins + " mn";
+
+                setTotalDuration(theDuration)
+                
                 let f = Array.from(result.data.tasks);
                 let groups = _.groupBy(result.data.tasks, obj => moment(obj.start).startOf('day').format());
                 for (const [key, value] of Object.entries(groups)) {
@@ -112,7 +121,8 @@ function Home() {
                             <div className="col">
                                 <strong>Selected category: </strong>{selectedCategory.label}
                                 &nbsp;|&nbsp;
-                                <strong>Total duration:</strong> {getHoursMinutesFormat(totalDuration)}
+                                <strong>Total duration:</strong> {totalDuration}
+                                 {/* {getHoursMinutesFormat(totalDuration)} */}
                             </div>
                             <div className="col text-right">
                                 <a href="#" onClick={e => handleCreateTask(e)} className="btn-purple">
