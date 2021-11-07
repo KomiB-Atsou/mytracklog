@@ -8,6 +8,16 @@ module.exports = {
     },
     list: async categoryId => await Task.find({categoryId: categoryId}),
     list2: async categoryIds => await Task.find({categoryId: categoryIds}),
+    list3: async (categoryIds, beginDate, endDate ) => await Task.find({categoryId: categoryIds, 
+        startedAt: {
+            $gte: new Date(beginDate), 
+            $lt: new Date(endDate)
+        },
+        finishedAt: {
+            $gte: new Date(beginDate), 
+            $lt: new Date(endDate)
+        }
+    }),
     update: async (id, data) => {
         let t = await Task.findByIdAndUpdate(id, {
             label: data.label,

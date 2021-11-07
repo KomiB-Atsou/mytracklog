@@ -23,6 +23,10 @@ function Home() {
 
     const [selectedTask, setSelectedTask] = useState(null);
 
+    const theStart = moment().subtract(1, 'months').endOf('month').startOf('week').format('YYYY/MM/DD');
+    
+    console.log('testtgnnnnnnn : ', theStart);
+
     useEffect(() => {
         reloadCategories();
     }, []);

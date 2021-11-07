@@ -19,6 +19,19 @@ function CalendarView(props) {
     const handleSelect = ({ start, end }) => {
     }
 
+    const onNavigate = (date, view) => {
+        let start, end;
+      
+        if (view === 'month') {
+          start = moment(date).startOf('month').startOf('week')
+          console.log(start)
+          end = moment(date).endOf('month').endOf('week')
+        }
+        console.log(start, end);
+      
+        return console.log({ start, end });
+      }
+
     const handleSelectEvent = task => {
         console.log('see task selected : ', task)
         props.viewTaskDetails(task);
@@ -33,6 +46,7 @@ function CalendarView(props) {
                 events={props.tasks}
                 onSelectSlot={handleSelect}
                 onSelectEvent={handleSelectEvent}
+                onNavigate={onNavigate}
             />
         </div>
     );
