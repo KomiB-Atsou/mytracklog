@@ -120,7 +120,7 @@ function Home() {
                         <div className="row mb-10">
                             <div className="col">
                                 <strong>Selected category: </strong>{selectedCategory.label}
-                                &nbsp;|&nbsp;
+                                &nbsp;&nbsp;
                                 {/* <strong>Total duration:</strong> {totalDuration} */}
                                  {/* {getHoursMinutesFormat(totalDuration)} */}
                             </div>
