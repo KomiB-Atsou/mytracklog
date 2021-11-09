@@ -8,7 +8,6 @@ console.log('config :', config);
 export default class {
 
      static getAll = async keyword => {
-        console.log('canalbox : ');
         
         let result = {
             data: null,
@@ -135,6 +134,28 @@ export default class {
                 }
             })
             .catch(err => {
+                result.error = err.response.data;
+            });
+
+        return result;
+    }
+
+    static getDuration = async (categoryId, beginDate, endDate) => {
+
+        let result = {
+            data: null,
+            error: null
+        };
+        await axios.post(`${config.api}/categories/totalDuration`,{categoryId, beginDate, endDate})
+            .then(resp => {
+                
+                if (resp.status === 200) {
+                    result.data = resp.data;
+                    console.log('nuit : ', result);
+                }
+            })
+            .catch(err => {
+                
                 result.error = err.response.data;
             });
 
