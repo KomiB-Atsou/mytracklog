@@ -23,10 +23,6 @@ function Home() {
 
     const [selectedTask, setSelectedTask] = useState(null);
 
-    const theStart = moment().subtract(1, 'months').endOf('month').startOf('week').format('YYYY/MM/DD');
-    
-    console.log('testtgnnnnnnn : ', theStart);
-
     useEffect(() => {
         reloadCategories();
     }, []);
@@ -125,7 +121,7 @@ function Home() {
                             <div className="col">
                                 <strong>Selected category: </strong>{selectedCategory.label}
                                 &nbsp;|&nbsp;
-                                <strong>Total duration:</strong> {totalDuration}
+                                {/* <strong>Total duration:</strong> {totalDuration} */}
                                  {/* {getHoursMinutesFormat(totalDuration)} */}
                             </div>
                             <div className="col text-right">
@@ -139,7 +135,7 @@ function Home() {
                                 
                             </div>
                         </div>}
-                        {selectedCategory && <CalendarView tasks={tasks} viewTaskDetails={viewTaskDetails} /> || <NoCategorySelected />}
+                        {selectedCategory && <CalendarView selectedCategory={selectedCategory} tasks={tasks} viewTaskDetails={viewTaskDetails} /> || <NoCategorySelected />}
                     </div>
                 </div>
             </div>
