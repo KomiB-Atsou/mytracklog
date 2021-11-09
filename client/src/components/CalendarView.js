@@ -31,7 +31,7 @@ function CalendarView(props) {
                 }
 
                 Swal.close();
-                var x = result.data.duration * 1000;
+                var x = result.data.duration * 1000 * 60;
                 var d = moment.duration(x, 'milliseconds');
                 var hours = Math.floor(d.asHours());
                 var mins = Math.floor(d.asMinutes()) - hours * 60;
@@ -53,6 +53,17 @@ function CalendarView(props) {
 
     const handleSelect = ({ start, end }) => {
         //console.log('change select');
+    }
+
+    const getTimeFromMins = (mins) => {
+        // do not include the first validation check if you want, for example,
+        // getTimeFromMins(1530) to equal getTimeFromMins(90) (i.e. mins rollover)
+        if (mins >= 24 * 60 || mins < 0) {
+            throw new RangeError("Valid input should be greater than or equal to 0 and less than 1440.");
+        }
+        var h = mins / 60 | 0,
+            m = mins % 60 | 0;
+        return moment.utc().hours(h).minutes(m).format("hh:mm A");
     }
     
 
@@ -80,17 +91,15 @@ function CalendarView(props) {
                 }
 
                 Swal.close();
-                var x = result.data.duration * 1000;
+                var x = result.data.duration * 1000 * 60;
                 var d = moment.duration(x, 'milliseconds');
                 var hours = Math.floor(d.asHours());
                 var mins = Math.floor(d.asMinutes()) - hours * 60;
                 console.log(hours + " hours:" + mins + " mins:");
                 const theDuration = hours + " h " + mins + " mn";
 
-                //setTotalDuration(theDuration)
                 setDuration(theDuration);
             });
-        //console.log('date :', moment(date, 'YYYY/MM/DD').format('YYYY-MM-DD'));
       
         return console.log({ start, end });
       }
