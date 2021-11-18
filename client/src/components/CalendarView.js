@@ -16,8 +16,13 @@ function CalendarView(props) {
     const [end, setEnd] = useState(Date.now()); */
     const [selectedDay, setSelectedDay] = useState()
     const [duration, setDuration] = useState('');
+    const selectedCategory = props.selectedCategory;
 
     useEffect(() => {
+
+        console.log('called');
+
+        console.log('selected category : ', props.selectedCategory);
 
         var beginDate = moment(new Date(new Date().getFullYear(), new Date().getMonth(), 1)).format('YYYY-MM-DD');
         var endDate = moment(new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0)).format('YYYY-MM-DD');
@@ -32,6 +37,7 @@ function CalendarView(props) {
 
                 Swal.close();
                 var x = result.data.duration * 1000 * 60;
+                console.log('duration getted : ', result.data.duration);
                 var d = moment.duration(x, 'milliseconds');
                 var hours = Math.floor(d.asHours());
                 var mins = Math.floor(d.asMinutes()) - hours * 60;
@@ -42,7 +48,7 @@ function CalendarView(props) {
                 setDuration(theDuration);
             });
        
-    }, [props.selectedCategory]);
+    }, [selectedCategory]);
 
     moment.locale("en", {
         week: {
