@@ -63,10 +63,10 @@ function Home() {
                 var d = moment.duration(x, 'milliseconds');
                 var hours = Math.floor(d.asHours());
                 var mins = Math.floor(d.asMinutes()) - hours * 60;
-                console.log(hours + " hours:" + mins + " mins:");
+                //console.log(hours + " hours:" + mins + " mins:");
                 const theDuration = hours + " h " + mins + " mn";
 
-                setTotalDuration(theDuration)
+                //setTotalDuration(theDuration)
                 
                 let f = Array.from(result.data.tasks);
                 let groups = _.groupBy(result.data.tasks, obj => moment(obj.start).startOf('day').format());
