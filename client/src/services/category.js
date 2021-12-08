@@ -16,13 +16,13 @@ export default class {
 
         await axios.post(`${config.api}/categories/all`, {keyword: keyword})
             .then(resp => {
-                console.log('cool : ');
+                //console.log('cool : ');
                 if (resp.status === 200) {
                     result.data = resp.data;
                 }
             })
             .catch(err => {
-                console.log('pas cool : ', err);
+                //console.log('pas cool : ', err);
                 result.error = err.response.data;
             });
 
@@ -151,7 +151,7 @@ export default class {
                 
                 if (resp.status === 200) {
                     result.data = resp.data;
-                    console.log('nuit : ', result);
+                    //console.log('nuit : ', result);
                 }
             })
             .catch(err => {

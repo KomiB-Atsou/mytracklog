@@ -172,6 +172,7 @@ function TreeView(props) {
     }
 
     const handleSelect = (e, currentCategory) => {
+        console.log('select one category');
         props.setSelectedCategory(currentCategory);
     }
 
