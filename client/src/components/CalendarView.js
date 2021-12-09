@@ -6,6 +6,7 @@ import {Badge} from 'reactstrap';
 import categoryService from '../services/category';
 import Swal from "sweetalert2";
 import {swalDeleteForm, swalError, swalInfo, swalSuccess} from "../utils/swal";
+import dates from 'react-big-calendar/lib/utils/dates';
 
 /*import NoCategorySelected from "./NoCategorySelected";
 import taskService from '../services/task';*/
@@ -39,8 +40,11 @@ function CalendarView(props) {
             endDate = moment(selectedDay).endOf("isoWeek").toDate();
            
         } else if(view === 'day'){
-            beginDate = moment(selectedDay).toDate();;
-            endDate = moment(selectedDay).toDate();;
+            beginDate = moment(selectedDay).toDate();
+            endDate = moment(selectedDay).toDate();
+        } else if(view === 'agenda'){
+            beginDate = moment(selectedDay).startOf('day');
+            endDate   = moment(selectedDay).endOf('day').add(1, 'month');
         }
 
         categoryService.getDuration(props.selectedCategory._id, beginDate, endDate)
@@ -92,11 +96,6 @@ function CalendarView(props) {
         setSelectedDay(date)
       
         if (view === 'month') {
-           
-            /* start = moment().startOf('month').format('YYYY/MM/DD');
-            end = moment().endOf('month').format('YYYY/MM/DD'); */
-            
-            //console.log('start of month : '+ start + ' end of month :'+ end);
 
             beginDate = moment(new Date(date.getFullYear(), date.getMonth(), 1)).format('YYYY-MM-DD');
             endDate = moment(new Date(date.getFullYear(), date.getMonth() + 1, 0)).format('YYYY-MM-DD');
@@ -116,6 +115,9 @@ function CalendarView(props) {
             console.log('clacaa : ', date);
             beginDate = moment(date).toDate();;
             endDate = moment(date).toDate();;
+        } else if(view === 'agenda'){
+            beginDate = moment(date).startOf('day');
+            endDate   = moment(date).endOf('day').add(1, 'month');
         }
 
        /*  var beginDate = moment(new Date(date.getFullYear(), date.getMonth(), 1)).format('YYYY-MM-DD');
@@ -167,6 +169,11 @@ function CalendarView(props) {
         else if(view === 'day'){
             beginDate = moment(selectedDay).toDate();
             endDate = moment(selectedDay).toDate();
+        }
+        else if(view === 'agenda'){
+            console.log('agenda');
+            beginDate = moment(selectedDay).startOf('day');
+            endDate   = moment(selectedDay).endOf('day').add(1, 'month');
         }
 
         console.log('first day : '+ beginDate +  ' last day : ', endDate);
