@@ -6,6 +6,7 @@ import {Badge} from 'reactstrap';
 import categoryService from '../services/category';
 import Swal from "sweetalert2";
 import {swalDeleteForm, swalError, swalInfo, swalSuccess} from "../utils/swal";
+import dates from 'react-big-calendar/lib/utils/dates';
 
 /*import NoCategorySelected from "./NoCategorySelected";
 import taskService from '../services/task';*/
@@ -39,8 +40,11 @@ function CalendarView(props) {
             endDate = moment(selectedDay).endOf("isoWeek").toDate();
            
         } else if(view === 'day'){
-            beginDate = moment(selectedDay).toDate();;
-            endDate = moment(selectedDay).toDate();;
+            beginDate = moment(selectedDay).toDate();
+            endDate = moment(selectedDay).toDate();
+        } else if(view === 'agenda'){
+            beginDate = moment(selectedDay).toDate();
+            endDate = moment(selectedDay).toDate();
         }
 
         categoryService.getDuration(props.selectedCategory._id, beginDate, endDate)
@@ -116,6 +120,8 @@ function CalendarView(props) {
             console.log('clacaa : ', date);
             beginDate = moment(date).toDate();;
             endDate = moment(date).toDate();;
+        } else if(view === 'agenda'){
+            //console.log('tttt :', dates.firstVisibleDay(date), dates.lastVisibleDay(date))
         }
 
        /*  var beginDate = moment(new Date(date.getFullYear(), date.getMonth(), 1)).format('YYYY-MM-DD');
@@ -165,6 +171,11 @@ function CalendarView(props) {
              console.log('start of week : '+ beginDate + ' end of week :'+ endDate);
         }
         else if(view === 'day'){
+            beginDate = moment(selectedDay).toDate();
+            endDate = moment(selectedDay).toDate();
+        }
+        else if(view === 'agenda'){
+            console.log('agenda');
             beginDate = moment(selectedDay).toDate();
             endDate = moment(selectedDay).toDate();
         }
