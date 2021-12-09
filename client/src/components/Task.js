@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import moment from 'moment';
+import moment, { duration } from 'moment';
 import Rodal from 'rodal';
 import 'rodal/lib/rodal.css';
 import taskService from '../services/task';
@@ -36,6 +36,16 @@ function Task(props) {
       const onNodeToggle = currentNode => {
         console.log('onNodeToggle::', currentNode)
       } */
+
+    const timeConversation = (duration) => {
+        var x = duration * 1000 * 60;
+        var d = moment.duration(x, 'milliseconds');
+        var hours = Math.floor(d.asHours());
+        var mins = Math.floor(d.asMinutes()) - hours * 60;
+        console.log('DUREE ON NAVIGATE '+hours + " hours:" + mins + " mins:");
+        const theDuration = hours + " h " + mins + " mn";
+        return theDuration
+    } 
 
     useEffect(() => {
 
@@ -229,7 +239,7 @@ function Task(props) {
                         <div className="row">
                             <div className="col text-left">
                                 <label><i>
-                                    Task duration is <strong>{moment.duration(moment(props.task.end).diff(moment(props.task.start))).asMinutes()}</strong> minutes.</i></label>
+                                    Task duration is <strong>{timeConversation(moment.duration(moment(props.task.end).diff(moment(props.task.start))).asMinutes())}</strong></i></label>
                             </div>
                         </div>
                     }
@@ -238,7 +248,7 @@ function Task(props) {
                         <div className="row">
                             <div className="col text-left">
                                 <label><i>
-                                    Task duration is <strong>{moment.duration(moment(finishedAt).diff(moment(startedAt))).asMinutes()}</strong> minutes.</i></label>
+                                    Task duration is <strong>{timeConversation(moment.duration(moment(finishedAt).diff(moment(startedAt))).asMinutes())}</strong></i></label>
                             </div>
                         </div>
                     }
