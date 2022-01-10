@@ -37,22 +37,22 @@ export default function Header(props) {
     setUser(JSON.parse(localStorage.getItem('profile')));
   }, [location]);
     return (
-        <nav className="navbar navbar-expand-xs navbar-expand-sm navbar-expand-md navbar-light bg-light">
-            <a className="navbar-brand text-white" href="/">
+        <nav className="navbar navbar-expand-xs navbar-expand-sm navbar-expand-md navbar-light bg-light" style={{height: '26px'}}>
+            {<a className="navbar-brand text-white" href="/">
                 <i className="fas fa-clipboard-check" style={{fontSize: '26px', marginRight: '10px'}}></i>
                 {config.appTitle}
-            </a>
+            </a>}
 
             <Toolbar className={classes.toolbar}>
         {user?.result ? (
           <div className={classes.profile}>
             {/* <Avatar className={classes.purple} alt={user?.result.name} src={user?.result.imageUrl}>{user?.result.name.charAt(0)}</Avatar> */}
             <Typography className={classes.userName} variant="h6">{user?.result.name}</Typography>
-            <Button variant="contained" className={classes.logout} color="secondary" style={{
+            {/* <Button variant="contained" className={classes.logout} color="secondary" style={{
                 marginLeft: 950
             }}
             onClick={logout}
-             >Logout</Button>
+             >Logout</Button> */}
           </div>
         ) : (
           <Button component={Link} to="/login" variant="contained" color="primary">Sign In</Button>

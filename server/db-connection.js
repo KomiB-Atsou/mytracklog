@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const CONNECTION_STRING = process.env.MONGO_URI;
+const CONNECTION_STRING = process.env.MONGO_URI ;
 
 module.exports = () => {
     mongoose.connect(CONNECTION_STRING, {
