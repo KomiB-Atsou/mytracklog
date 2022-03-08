@@ -3,7 +3,7 @@ import moment from 'moment';
 import Rodal from 'rodal';
 import 'rodal/lib/rodal.css';
 import categoryService from '../services/category';
-import {swalDeleteForm, swalError, swalInfo, swalSuccess} from "../utils/swal";
+import {swalDeleteForm, swalError, swalSuccess} from "../utils/swal";
 import Swal from "sweetalert2";
 import SelectSearch, {fuzzySearch} from 'react-select-search';
 import 'react-select-search/style.css';
