@@ -5,8 +5,8 @@ import 'react-big-calendar/lib/css/react-big-calendar.css';
 import {Badge} from 'reactstrap';
 import categoryService from '../services/category';
 import Swal from "sweetalert2";
-import {swalDeleteForm, swalError, swalInfo, swalSuccess} from "../utils/swal";
-import dates from 'react-big-calendar/lib/utils/dates';
+import {swalError} from "../utils/swal";
+//import dates from 'react-big-calendar/lib/utils/dates';
 
 /*import NoCategorySelected from "./NoCategorySelected";
 import taskService from '../services/task';*/
@@ -18,7 +18,7 @@ function CalendarView(props) {
     const [selectedDay, setSelectedDay] = useState(new Date())
     const [duration, setDuration] = useState('');
     const [view, setView] = useState('month');
-    const [selectedCategory, setSelectedCategory] = useState(props.selectedCategory);
+    //const [selectedCategory, setSelectedCategory] = useState(props.selectedCategory);
     //const selectedCategory = props.selectedCategory;
 
     useEffect(() => {
@@ -79,16 +79,16 @@ function CalendarView(props) {
         //console.log('change select');
     }
 
-    const getTimeFromMins = (mins) => {
+    //const getTimeFromMins = (mins) => {
         // do not include the first validation check if you want, for example,
         // getTimeFromMins(1530) to equal getTimeFromMins(90) (i.e. mins rollover)
-        if (mins >= 24 * 60 || mins < 0) {
+        /* if (mins >= 24 * 60 || mins < 0) {
             throw new RangeError("Valid input should be greater than or equal to 0 and less than 1440.");
         }
         var h = mins / 60 | 0,
             m = mins % 60 | 0;
         return moment.utc().hours(h).minutes(m).format("hh:mm A");
-    }
+    } */
     
 
     const onNavigate = (date, view) => {

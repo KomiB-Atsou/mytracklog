@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Avatar, Button, Paper, Grid, Typography, Container } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
-import { GoogleLogin } from 'react-google-login';
+//import { GoogleLogin } from 'react-google-login';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 
-import Icon from './icon';
+//import Icon from './icon';
 import { signin, signup } from '../../actions/auth';
 import { AUTH } from '../../constants/actionTypes';
 import useStyles from './styles';
@@ -34,11 +34,11 @@ const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false);
   const handleShowPassword = () => setShowPassword(!showPassword);
 
-  const switchMode = () => {
+  /* const switchMode = () => {
     setForm(initialState);
     setIsSignup((prevIsSignup) => !prevIsSignup);
     setShowPassword(false);
-  };
+  }; */
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -51,7 +51,7 @@ const SignUp = () => {
     }
   };
 
-  const googleSuccess = async (res) => {
+  /* const googleSuccess = async (res) => {
     const result = res?.profileObj;
     const token = res?.tokenId;
 
@@ -62,9 +62,9 @@ const SignUp = () => {
     } catch (error) {
       console.log(error);
     }
-  };
+  }; */
 
-  const googleError = () => console.log('Google Sign In was unsuccessful. Try again later');
+  //const googleError = () => console.log('Google Sign In was unsuccessful. Try again later');
 
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
 

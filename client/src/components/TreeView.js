@@ -1,13 +1,12 @@
 import React, {useState, useEffect} from 'react';
 import categoryService from '../services/category';
 import taskService from '../services/task';
-import { AppBar, Typography, Toolbar, Avatar, Button } from '@material-ui/core';
 import {swalCategory, swalDeleteCategory, swalError, swalLoading, swalSuccess} from "../utils/swal";
 import Swal from "sweetalert2";
 /* import CalendarView from "./CalendarView";
 import Header from "./Header"; */
 import Category from "./Category";
-import { Link } from 'react-router-dom';
+//import { Link } from 'react-router-dom';
 import CategoryForm from './CategoryForm';
 import _ from "lodash";
 import moment from 'moment';
@@ -17,15 +16,13 @@ function TreeView(props) {
     const [showCategoryDetailsPopup, setShowCategoryDetailsPopup] = useState(false);
     const [selectedCategory, setSelectedCategory] = useState(null);
     const [selectedUpdateCategory, setSelectedUpdateCategory] = useState(null);
-    const [currentCategoryParent, setCurrentCategoryParent] = useState('');
+   // const [currentCategoryParent, setCurrentCategoryParent] = useState('');
 
     const [showCategoryModal, setShowCategoryModal] = useState(false);
     const [showCategoryUpdateModal, setShowCategoryUpdateModal] = useState(false);
     
     const [totalDuration, setTotalDuration] = useState(0);
     const [tasks, setTasks] = useState([]);
-
-    
 
     useEffect(() => {
         reloadLibs();

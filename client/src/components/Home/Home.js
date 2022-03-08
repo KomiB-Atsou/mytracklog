@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import './Home.css';
-import {Route, Switch, BrowserRouter, Redirect} from 'react-router-dom';
 import Header from "../../components/Header";
 import CalendarView from "../../components/CalendarView";
 import TreeView from "../../components/TreeView";
@@ -12,12 +11,11 @@ import taskService from "../../services/task";
 import moment from "moment";
 import _ from "lodash";
 import $ from "jquery";
-import CategoryForm from '../CategoryForm';
 
 function Home() {
     const [data, setData] = useState([]);
     const [tasks, setTasks] = useState([]);
-    const [totalDuration, setTotalDuration] = useState('');
+    //const [totalDuration, setTotalDuration] = useState('');
     const [selectedCategory, setSelectedCategory] = useState(null);
     const [showTaskModal, setShowTaskModal] = useState(false); 
 
