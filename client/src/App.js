@@ -38,7 +38,7 @@ function App() {
 
     return (
 
-        <BrowserRouter basename="/React">
+        <BrowserRouter >
         <Container maxWidth="xl">
 
         <Switch>
