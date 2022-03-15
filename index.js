@@ -12,9 +12,9 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use('/categories', categories);
-app.use('/tasks', tasks);
-app.use('/user', users);
+app.use('/api/categories', categories);
+app.use('/api/tasks', tasks);
+app.use('/api/user', users);
 
 console.log('test server time : ', new Date());
 
